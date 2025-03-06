@@ -9,13 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class LanguageAdapter extends BaseAdapter {
 
     private Context context;
-    private String[] names;
-    private int[] images;
+    private ArrayList<String> names;
+    private ArrayList<Integer> images;
 
-    public LanguageAdapter(Context context, String[] names, int[] images) {
+    public LanguageAdapter(Context context, ArrayList<String> names, ArrayList<Integer> images) {
         this.context = context;
         this.names = names;
         this.images = images;
@@ -23,12 +25,12 @@ public class LanguageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return names.length;
+        return names.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return names[position];
+        return names.get(position);
     }
 
     @Override
@@ -46,10 +48,9 @@ public class LanguageAdapter extends BaseAdapter {
         ImageView imgLogo = convertView.findViewById(R.id.imgLogo);
         TextView txtName = convertView.findViewById(R.id.txtName);
 
-        imgLogo.setImageResource(images[position]);
-        txtName.setText(names[position]);
+        imgLogo.setImageResource(images.get(position));
+        txtName.setText(names.get(position));
 
-        convertView.setOnClickListener(v -> Toast.makeText(context, "Bạn đã chọn: " + names[position], Toast.LENGTH_SHORT).show());
         return convertView;
     }
 }
